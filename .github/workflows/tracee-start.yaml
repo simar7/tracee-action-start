@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Start Tracee profiling in background
       uses: simar7/tracee-action-start@main
+      with:
+        workdir: "/tmp/tracee"
 
     - name: Check if tracee was succesfully started
       run: |
@@ -20,3 +22,4 @@ jobs:
         docker ps -a
         docker logs tracee-profiler | head
         echo $?
+        ls -lrRth /tmp/tracee
