@@ -11,5 +11,4 @@ runs:
       docker run --name tracee-profiler --rm --privileged \
       -v /proc:/proc -v /boot:/boot -v /lib/modules/:/lib/modules/:ro \
       -v /usr/src:/usr/src:ro -v $(pwd):/tmp/tracee simar7/tracee:latest \
-      trace --output out-file:"/tmp/tracee/tracee.stdout.log" \
-      --capture exec --capture profile &
+      trace --capture exec --capture profile &
