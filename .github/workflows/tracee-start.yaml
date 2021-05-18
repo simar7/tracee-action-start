@@ -1,0 +1,21 @@
+name: Start Tracee Background Scan
+on:
+  push:
+    branches:
+    - "*"
+
+jobs:
+  Tracee-Scan:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Start Tracee profiling in background
+      uses: simar7/tracee-action-start@main
+
+    - name: Check if tracee was succesfully started
+      run: |
+        sleep 10
+        docker images -a
+        docker ps -a
+        docker logs tracee-profiler
