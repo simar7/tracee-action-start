@@ -19,3 +19,4 @@ jobs:
         docker images -a
         docker ps -a
         docker logs tracee-profiler | head
+        echo $?
