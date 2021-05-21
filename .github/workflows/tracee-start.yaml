@@ -10,10 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Show pstree
+      run: pstree -s -p -h -n
+
     - name: Start Tracee profiling in background
       uses: simar7/tracee-action-start@main
       with:
         workdir: "/tmp/tracee"
+
+    - name: Run some commands
+      run: |
+        sleep 30
+        pstree -s -p -h -n
+        ls -lrth
+        strace ls
 
     - name: Check if tracee was succesfully started
       run: |
