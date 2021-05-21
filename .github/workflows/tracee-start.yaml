@@ -20,14 +20,12 @@ jobs:
 
     - name: Run some commands
       run: |
-        sleep 30
-        pstree -s -p -h -n
         ls -lrth
-        strace ls
+        for i in {1..20}; do sleep 2 && strace ls; done
+        pstree -s -p -h -n
 
     - name: Check if tracee was succesfully started
       run: |
-        sleep 30
         docker images -a
         docker ps -a
         docker logs tracee-profiler | head

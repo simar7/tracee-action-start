@@ -12,8 +12,10 @@ runs:
   steps:
   - shell: bash
     run: |
+      provisionerPID=$(pgrep provisioner)
+      echo $provisionerPID
       docker pull simar7/tracee:latest
       docker run -d --name tracee-profiler --rm --privileged \
       -v /proc:/proc -v /boot:/boot -v /lib/modules/:/lib/modules/:ro \
       -v /usr/src:/usr/src:ro -v ${{ inputs.workdir }}:/tmp/tracee simar7/tracee:latest \
-      trace -t pid=$PPID -t follow -t event=execve --capture exec --capture profile
+      trace -t pid=$provisionerPID -t follow -t event=execve --capture exec --capture profile
